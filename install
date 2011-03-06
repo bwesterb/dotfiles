@@ -1,0 +1,97 @@
+#!/usr/bin/env python
+
+SCRIPT_NAME = 'install'
+IGNORED_PATTERNS = [r'^.+\.swp$',
+                    r'^install$',
+                    r'^\.git$']
+
+import re
+import sys
+import optparse
+
+from os import symlink, mkdir, listdir
+from os.path import (basename, dirname, exists, expanduser, isdir, isfile,
+                        islink, join, realpath, normpath)
+
+class Program(object):
+        def log(self, msg):
+                if not self.options.quiet:
+                        print msg
+        def parse_options(self):
+                parser = optparse.OptionParser()
+                parser.add_option('-q', '--quiet', dest='quiet',
+                                action='store_true',
+                                help='Be quiet')
+                parser.add_option('-w', '--wet-run', dest='wetrun',
+                                action='store_true',
+                                help='Perform the installation')
+                self.options, args = parser.parse_args()
+        def handle_file(self, source, target, rel_source, rel_target):
+                if islink(target):
+                        if realpath(source) == realpath(target):
+                                return
+                        else:
+                                self.log('%s links to %s instead of %s' % (
+                                        rel_source, realpath(source), target))
+                elif exists(target):
+                        self.log('%s already exists' % rel_target)
+                else:
+                        self.log('symlink %s %s' % (rel_target, rel_source))
+                        if self.options.wetrun:
+                                symlink(source, target)
+
+        def handle_dir(self, source, target, rel_source, rel_target):
+                if isdir(target):
+                        return
+                elif exists(target):
+                        self.log('%s already exists and is not a directory' % (
+                                        rel_target))
+                else:
+                        self.log('mkdir %s' % rel_target)
+                        if self.options.wetrun:
+                                mkdir(target)
+
+        def main(self):
+                self.parse_options()
+                # Compile the ignore regular expressions
+                self.ignore_res = [re.compile(x) for x in IGNORED_PATTERNS]
+                # Get home and source path
+                self.path_home = realpath(expanduser('~/'))
+                self.path_source = realpath(dirname(sys.argv[0]))
+                # Basic sanity checks
+                assert basename(sys.argv[0]) == SCRIPT_NAME
+                self.main_loop()
+        
+        def ignored(self, rel_source):
+                if any([r.match(rel_source) for r in self.ignore_res]):
+                        return True
+                return False
+
+        def main_loop(self):
+                stack = [('.', True)]
+                while stack:
+                        path, isRoot = stack.pop()
+                        for child in listdir(join(self.path_source, path)):
+                                rel_source = normpath(join(path, child))
+                                rel_target = normpath(join(path, (
+                                        '.'+child if isRoot else child)))
+                                source = normpath(join(self.path_source,
+                                                rel_source))
+                                target = normpath(join(self.path_home,
+                                                        rel_target))
+                                if self.ignored(rel_source):
+                                        self.log('Ignoring %s' % rel_source)
+                                        continue
+                                if isfile(source):
+                                        self.handle_file(source, target,
+                                                        rel_source, rel_target)
+                                elif isdir(source):
+                                        self.handle_dir(source, target,
+                                                        rel_source, rel_target)
+                                        stack.append((join(path, child), False))
+                                else:
+                                        self.log(("I don't know how to handl"+
+                                                "e %s") % source)
+
+if __name__ == '__main__':
+        Program().main()
