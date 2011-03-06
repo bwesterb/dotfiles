@@ -68,12 +68,12 @@ class Program(object):
                 return False
 
         def main_loop(self):
-                stack = [('.', True)]
+                stack = [('.', '.', True)]
                 while stack:
-                        path, isRoot = stack.pop()
-                        for child in listdir(join(self.path_source, path)):
-                                rel_source = normpath(join(path, child))
-                                rel_target = normpath(join(path, (
+                        s_path, t_path, isRoot = stack.pop()
+                        for child in listdir(join(self.path_source, s_path)):
+                                rel_source = normpath(join(s_path, child))
+                                rel_target = normpath(join(t_path, (
                                         '.'+child if isRoot else child)))
                                 source = normpath(join(self.path_source,
                                                 rel_source))
@@ -88,7 +88,8 @@ class Program(object):
                                 elif isdir(source):
                                         self.handle_dir(source, target,
                                                         rel_source, rel_target)
-                                        stack.append((join(path, child), False))
+                                        stack.append((rel_source, rel_target,
+                                                                False))
                                 else:
                                         self.log(("I don't know how to handl"+
                                                 "e %s") % source)
