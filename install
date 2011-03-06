@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 
 SCRIPT_NAME = 'install'
-IGNORED_PATTERNS = [r'^.+\.swp$',
-                    r'^install$',
-                    r'^\.git$']
 
 import re
 import sys
@@ -51,13 +48,30 @@ class Program(object):
                         if self.options.wetrun:
                                 mkdir(target)
 
+        def load_ignored(self):
+                path_ignored = join(self.path_source, 'ignored')
+                if not exists(path_ignored):
+                        self.log('Ignored file is missing')
+                        return
+                f = open(path_ignored, 'r')
+                res = []
+                for l in f.readlines():
+                        l = l.strip()
+                        if not l:
+                                continue
+                        if l[0] == '#':
+                                continue
+                        res.append(re.compile(l))
+                self.ignore_res = res
+
         def main(self):
+                # Parse commandline options
                 self.parse_options()
-                # Compile the ignore regular expressions
-                self.ignore_res = [re.compile(x) for x in IGNORED_PATTERNS]
                 # Get home and source path
                 self.path_home = realpath(expanduser('~/'))
                 self.path_source = realpath(dirname(sys.argv[0]))
+                # Compile the ignore regular expressions
+                self.load_ignored()
                 # Basic sanity checks
                 assert basename(sys.argv[0]) == SCRIPT_NAME
                 self.main_loop()

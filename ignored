@@ -1,0 +1,6 @@
+# Files matching any of these patterns are ignored by `install'
+^.+\.swp$
+^install$
+^ignored$
+^.gitignore$
+^.git$
