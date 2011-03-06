@@ -11,3 +11,8 @@ if [ "${DF_BASH_PROFILE_LOADED-undef}" != "undef" ]; then
         exit
 fi
 export DF_BASH_PROFILE_LOADED=1
+
+# Return if we are in an interactive shell
+if [[ $- != *i* ]]; then
+        return
+fi

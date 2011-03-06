@@ -6,6 +6,11 @@ if [ "${DF_PROFILE_LOADED-undef}" != "undef" ]; then
 fi
 export DF_PROFILE_LOADED=1
 
+# Return if we are in an interactive shell
+if [[ $- != *i* ]]; then
+        return
+fi
+
 # export_if_defined VAR
 # Exports VAR if defined
 export_if_defined() {
