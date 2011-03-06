@@ -22,10 +22,8 @@ add_to_path() {
         local addee=$2
         if [ -d "$addee" ] && [[ ":$tmp:" != *":$addee:"* ]]; then
                 if [ -z "$tmp" ]; then
-                        echo tmp=$addee
                         tmp=$addee
                 else
-                        echo tmp=$addee:$tmp
                         tmp="$addee:$tmp"
                 fi
         fi
