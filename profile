@@ -46,7 +46,7 @@ export_if_defined PYTHONPATH
 add_to_path TEXINPUTS $HOME/tex
 export_if_defined TEXINPUTS
 
-add_to_path MANPATH=/opt/local/share/man
+add_to_path MANPATH /opt/local/share/man
 export_if_defined MANPATH
 
 # Set prompt
