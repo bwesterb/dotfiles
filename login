@@ -2,7 +2,7 @@
 
 # Load .profile if not loaded already
 if [ "${DF_PROFILE_LOADED-undef}" = "undef" ] ; then
-        source .profile
+        source $HOME/.profile
 else
-        source .shrc
+        source $HOME/.shrc
 fi

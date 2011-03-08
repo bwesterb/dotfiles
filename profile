@@ -51,4 +51,4 @@ export EDITOR="vim"
 export SVN_EDITOR=$EDITOR
 
 # Load .shrc
-source .shrc 
+source $HOME/.shrc 
