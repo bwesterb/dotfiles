@@ -2,7 +2,7 @@ if [ "${DF_PROFILE_LOADED-undef}" = "undef" ]; then
         echo ".shrc shouldn't be called directly"
 fi
 
-DF_SHRC_LOADED=$(( ${DF_SHRC_LOADED=0} + 1 ))
+export DF_SHRC_LOADED=$(( ${DF_SHRC_LOADED=0} + 1 ))
 
 # Set prompt
 export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
