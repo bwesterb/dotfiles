@@ -39,6 +39,7 @@ add_to_path() {
 # TODO: cache this
 add_to_path PATH $HOME/bin
 add_to_path PATH /opt/local/bin
+add_to_path PATH /opt/local/sbin
 export_if_defined PATH
 
 add_to_path PYTHONPATH $HOME/py
