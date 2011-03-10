@@ -38,6 +38,7 @@ add_to_path() {
 # Set paths
 # TODO: cache this
 add_to_path PATH $HOME/bin
+add_to_path PATH /opt/local/bin
 export_if_defined PATH
 
 add_to_path PYTHONPATH $HOME/py
