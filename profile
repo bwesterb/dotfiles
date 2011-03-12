@@ -48,9 +48,9 @@ export_if_defined PYTHONPATH
 add_to_path MANPATH /opt/local/share/man
 export_if_defined MANPATH
 
-# Set prompt
-export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
-
 # Set default editor
 export EDITOR="vim"
 export SVN_EDITOR=$EDITOR
+
+# Load .shrc
+source $HOME/.shrc 
