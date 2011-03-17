@@ -9,6 +9,7 @@ set hlsearch
 set smartcase
 set smarttab
 set expandtab
+se colorcolumn=81
 
 " Git shortcuts
 map \D :w<CR>:!git diff --cached %<CR>
