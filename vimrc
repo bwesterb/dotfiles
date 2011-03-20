@@ -9,7 +9,12 @@ set hlsearch
 set smartcase
 set smarttab
 set expandtab
-se colorcolumn=81
+
+if exists('+colorcolumn')
+        set colorcolumn=81
+else
+        autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 " Git shortcuts
 map \D :w<CR>:!git diff --cached %<CR>
