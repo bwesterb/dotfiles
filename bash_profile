@@ -9,8 +9,7 @@ fi
 
 # Guard against multiple inclusions
 if [ "${DF_BASH_PROFILE_LOADED-undef}" != "undef" ]; then
-        echo DF_BASH_PROFILE_LOADED already set
-        exit
+        return
 fi
 export DF_BASH_PROFILE_LOADED=1
 
