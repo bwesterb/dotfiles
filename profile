@@ -52,6 +52,9 @@ export_if_defined MANPATH
 export EDITOR="vim"
 export SVN_EDITOR=$EDITOR
 
+# Set timezone
+export TZ="/usr/share/zoneinfo/Europe/Amsterdam"
+
 # Set up 256-color screen, if we've got 256 colors
 TPUT=`which tput`
 if [ -x $TPUT ] && [ `$TPUT colors` -eq 256 ]; then
