@@ -7,6 +7,12 @@ export DF_SHRC_LOADED=$(( ${DF_SHRC_LOADED=0} + 1 ))
 # Set prompt
 export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
 
+# Set up 256-color screen, if we've got 256 colors
+TPUT=`which tput`
+if [ -x $TPUT ] && [ `$TPUT colors` -eq 256 ]; then
+        alias screen="screen -T screen-256color"
+fi
+
 # Make sure we got 256 colors on gnome-terminal
 if [ "$TERM" != "xterm-256color" ]; then
         if [ "$COLORTERM" = "gnome-terminal" ]; then
