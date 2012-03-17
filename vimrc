@@ -3,6 +3,7 @@ filetype indent on
 filetype plugin on
 syntax on
 set ruler
+set modeline
 set modelines=2
 set backspace=2
 set hlsearch
