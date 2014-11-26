@@ -31,3 +31,7 @@ map \h :nohlsearch<CR>
 " Disable some installed plugins
 let g:acp_enableAtStartup = 0
 let g:showmarks_enable = 0
+
+se sw=4
+se ts=4
+se et

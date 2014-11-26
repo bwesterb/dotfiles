@@ -3,3 +3,5 @@
 	name = Bas Westerbaan
 [color]
 	ui = auto
+[push]
+	default = simple
