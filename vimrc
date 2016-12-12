@@ -22,8 +22,8 @@ map \D :w<CR>:!git diff --cached %<CR>
 map \d :w<CR>:!git diff %<CR>
 map \s :!git status<CR>
 map \m :w<CR>:make<CR>
-map \c :w<CR>:!git add %<CR>:!git commit -s<CR>
-map \C :wall<CR>:!git commit -a -s<CR>
+map \c :w<CR>:!git add %<CR>:!git commit<CR>
+map \C :wall<CR>:!git commit -a<CR>
 
 " Other shortcuts
 map \h :nohlsearch<CR>
