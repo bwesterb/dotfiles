@@ -35,3 +35,4 @@ let g:showmarks_enable = 0
 se sw=4
 se ts=4
 se et
+au BufRead,BufNewFile *.sls setfiletype yaml
