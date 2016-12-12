@@ -38,10 +38,15 @@ add_to_path() {
 # Set paths
 # TODO: cache this
 add_to_path PATH $HOME/bin
+add_to_path PATH $HOME/go/bin
 add_to_path PATH /opt/local/bin
+add_to_path PATH /opt/yubico-piv-tool/bin
 add_to_path PATH /opt/local/sbin
 add_to_path PATH /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
 export_if_defined PATH
+
+add_to_path GOPATH $HOME/go
+export_if_defined GOPATH
 
 add_to_path PYTHONPATH $HOME/py
 export_if_defined PYTHONPATH
@@ -58,3 +63,6 @@ export TZ="/usr/share/zoneinfo/Europe/Amsterdam"
 
 # Load .shrc
 source $HOME/.shrc 
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8

@@ -10,6 +10,8 @@ set hlsearch
 set smartcase
 set smarttab
 set expandtab
+set sw=4
+set ts=4
 
 if exists('+colorcolumn')
         set colorcolumn=81
@@ -20,6 +22,8 @@ endif
 " Git shortcuts
 map \D :w<CR>:!git diff --cached %<CR>
 map \d :w<CR>:!git diff %<CR>
+map \P :!git svn dcommit<CR>
+map \p :w<CR>:!git svn rebase<CR>
 map \s :!git status<CR>
 map \m :w<CR>:make<CR>
 map \c :w<CR>:!git add %<CR>:!git commit<CR>
