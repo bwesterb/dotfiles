@@ -5,7 +5,12 @@ fi
 export DF_SHRC_LOADED=$(( ${DF_SHRC_LOADED=0} + 1 ))
 
 # Set prompt
-export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
+if [ -n "$ZSH_VERSION" ]; then
+    export PS1="%B%F{green}%n@%m%f %F{blue}%1~ \$%f%b "
+else
+    export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] "
+fi
+
 
 # Set up 256-color screen, if we've got 256 colors
 TPUT=`which tput`
