@@ -40,3 +40,4 @@ se sw=4
 se ts=4
 se et
 au BufRead,BufNewFile *.sls setfiletype yaml
+au BufRead,BufNewFile *.gotemp setfiletype go
