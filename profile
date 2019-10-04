@@ -39,6 +39,7 @@ add_to_path() {
 # TODO: cache this
 add_to_path PATH $HOME/bin
 add_to_path PATH $HOME/go/bin
+add_to_path PATH $HOME/.cargo/bin
 add_to_path PATH /opt/local/bin
 add_to_path PATH /opt/yubico-piv-tool/bin
 add_to_path PATH /opt/local/sbin
